@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes')
+const routes = require('./routes');
+const bodyParser = require('body-parser');
 
 // crear server
 const app = express();
@@ -12,8 +13,12 @@ mongoose.connect('mongodb://localhost/veterinaria', {
   useFindAndModify: false
 });
 
+// habilitar bodyparser para extraer la petición al servidor
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // habilitar routing
-app.use('/', routes() )
+app.use('/', routes());
 
 // se define puerto
 const port = process.env.PORT || 4000;
