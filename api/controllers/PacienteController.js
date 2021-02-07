@@ -1,7 +1,7 @@
 const Paciente = require('../models/Paciente');
 
 // Cuando se crea un nuevo cliente
-exports.nuevoCLiente = async(req, res, next) => {
+exports.nuevoCliente = async(req, res, next) => {
 
   // crear datos de paciente con datos de req.body
   const paciente = new Paciente(req.body);
@@ -15,3 +15,14 @@ exports.nuevoCLiente = async(req, res, next) => {
   }
   console.log(req.body);
 };
+
+// Cuando se solicita un listado de pacientes
+exports.obtenerPacientes = async(req, res, next) => {
+  try {
+    const pacientes = await Paciente.find({});
+    res.json(pacientes)    
+  } catch (error) {
+    console.log(error);
+    next();
+  }
+}
