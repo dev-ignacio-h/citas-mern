@@ -25,4 +25,15 @@ exports.obtenerPacientes = async(req, res, next) => {
     console.log(error);
     next();
   }
+};
+
+// Cuando se solicita un paciente
+exports.obtenerPaciente = async(req, res, next) => {
+  try {
+    const paciente = await Paciente.findById(req.params.id)
+    res.json(paciente)
+  } catch (error) {
+    console.log(error);
+    next();
+  }
 }
