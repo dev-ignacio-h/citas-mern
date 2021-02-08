@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import clienteAxios from '../config/axios'
 
 const NuevaCita = (props) => {
@@ -27,9 +27,13 @@ const NuevaCita = (props) => {
     e.preventDefault();
     //enviar petición por axios
     clienteAxios.post('/pacientes', cita)
-      .then(res => console.log(res))
-      //redireccionar
-      props.history.push('/')
+      .then(res => {
+        console.log(res);
+        // Se cambia a true para que al redireccionar se realice la consulta nuevamente
+        props.guardarConsultar(true)
+        //redireccionar
+        props.history.push('/')
+      })
 
   }
 
@@ -131,4 +135,4 @@ const NuevaCita = (props) => {
   );
 };
 
-export default NuevaCita;
+export default withRouter(NuevaCita);
