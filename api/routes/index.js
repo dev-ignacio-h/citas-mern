@@ -19,6 +19,10 @@ module.exports = function () {
   router.put('/pacientes/:id',
     PacienteController.actualizarPaciente
   )
+  // Eliminar paciente por id
+  router.delete('/pacientes/:id',
+    PacienteController.eliminarPaciente
+  )
 
   return router;
 };
