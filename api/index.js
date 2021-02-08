@@ -2,9 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // crear server
 const app = express();
+
+// habilitar cors
+// limitar acceso a api
+const whitelist = ['http://localhost:3000'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    const existe = whitelist.some((dominio) => dominio === origin);
+    if (existe) callback(null, true);
+    else callback(new Error('No permitido por CORS'));
+  }
+};
+// app.use(cors(corsOptions));
+app.use(cors());
+
 // conectar a mongo
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/veterinaria', {
