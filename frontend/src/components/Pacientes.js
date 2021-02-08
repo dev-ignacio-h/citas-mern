@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { Link } from 'react-router-dom'
 
 const Pacientes = ({ citas }) => {
   if (!citas.length || citas.length === 0) return null;
@@ -8,25 +9,25 @@ const Pacientes = ({ citas }) => {
       <h1 className="my-5">Administrador de Pacientes</h1>
 
       <div className="container my-5">
-        <div className="row">
+        {/* <div className="row"> */}
           <div className="col-12 mb-5 d-flex justify-content-center">
-            <a
-              href="#"
+            <Link
+              to={'/nueva'}
               className="btn btn-success text-uppercase py-2 px-5 font-weight-bold"
             >
               Crear Cita
-            </a>
+            </Link>
           </div>
 
-          <div className="col-md-8 mx-auto">
-            <div className="list-group">
+          <div className="px-0 col-11 col-sm-12 col-md-10 col-lg-9 col-xl-8 mx-auto">
+            <div className=" list-group">
               {citas.map((cita) => (
                 <a
                   key={cita._id}
-                  className="p5 list-group-item list-group-item-action flex-column align-items-start"
+                  className="px-5 py-4 list-group-item list-group-item-action flex-column align-items-start"
                 >
                   <div className="d-flex w-100 justify-content-between mb-4">
-                    <h3 className="mb-3">{cita.nombre}</h3>
+                    <h3 className="mb-1">{cita.nombre}</h3>
                     <small className="fecha-alta">
                       {cita.fecha} - {cita.hora}
                     </small>
@@ -43,7 +44,7 @@ const Pacientes = ({ citas }) => {
               ))}
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </Fragment>
   );

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { browserHistory } from 'react-router'
+
 
 import clienteAxios from './config/axios';
 
